@@ -8,12 +8,10 @@
 
 ( function ( $, window, document, undefined ) {
 
-	var regularExpression = /fluid\-([^\[]+)\[(\d+)\]/i;
-
 	$.widget( 'smn.fluidResponsiveElement', {
 
 		options: {
-			
+			dataAttributeRegularExpression: /fluid\-([^\[]+)\[(\d+)\]/i
 		},
 
 		_create: function() {
@@ -27,7 +25,7 @@
 				// format key to kebab case
 				key = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 				
-				var found = key.match( regularExpression );
+				var found = key.match( widget.options.dataAttributeRegularExpression );
 				
 				if ( found ) {
 					var cssProperty = found[ 1 ];
